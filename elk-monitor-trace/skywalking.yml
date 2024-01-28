@@ -1,0 +1,60 @@
+version: "2.2"
+services:
+  martin-elk-elasticsearch:
+    image: elasticsearch:7.6.2
+    container_name: martin-elk-elasticsearch
+    restart: always
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - system_call_filter=false
+    networks:
+      - martin
+    volumes:
+      - ./elk/es/config:/usr/share/elasticsearch/config
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
+  martin-skywalking-oap:
+    image: apache/skywalking-oap-server:8.4.0-es7
+    container_name: martin-skywalking-oap
+    depends_on:
+      - martin-elk-elasticsearch
+    links:
+      - martin-elk-elasticsearch
+    networks:
+      - martin
+    restart: always
+    ports:
+      - 11800:11800
+      - 12800:12800
+    environment:
+      SW_ES_USER: elastic
+      SW_ES_PASSWORD: oasises
+      SW_STORAGE: elasticsearch7
+      SW_STORAGE_ES_CLUSTER_NODES: martin-elk-elasticsearch:9200
+      SW_TRACE_SAMPLE_RATE: 8000
+
+  martin-skywalking-ui:
+    image: apache/skywalking-ui:8.4.0
+    container_name: martin-skywalking-ui
+    networks:
+      - martin
+    depends_on:
+      - martin-skywalking-oap
+    links:
+      - martin-skywalking-oap
+    restart: always
+    ports:
+      - 9603:8080
+    environment:
+      SW_OAP_ADDRESS: martin-skywalking-oap:12800
+
+networks:
+  martin:
+    external: true

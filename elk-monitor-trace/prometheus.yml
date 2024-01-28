@@ -1,0 +1,43 @@
+version: '3'
+services:
+  martin-prometheus:
+    image: prom/prometheus:latest
+    container_name: martin-prometheus
+    volumes:
+      - ./monitor/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./monitor/prometheus/alertmanager_rules.yml:/etc/prometheus/alertmanager_rules.yml
+    ports:
+      - 9090:9090
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+
+  martin-grafana:
+    image: grafana/grafana
+    container_name: martin-grafana
+    restart: always
+    hostname: martin-grafana
+    volumes:
+      - ./monitor/grafana/grafana.ini:/etc/grafana/grafana.ini
+    ports:
+      - "3000:3000"
+
+  martin-alertmanager:
+    image: prom/alertmanager:latest
+    container_name: martin-alertmanager
+    hostname: martin-alertmanager
+    restart: always
+    volumes:
+      - ./monitor/altermanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+    ports:
+      - "9093:9093"
+
+  martin-prometheus-webhook-alert:
+    image: timonwong/prometheus-webhook-dingtalk:v1.3.0
+    container_name: martin-prometheus-webhook-alertmanagers
+    hostname: martin-webhook-alertmanagers
+    restart: always
+    volumes:
+      - ./monitor/prometheus-webhook-dingtalk/config.yml:/etc/prometheus-webhook-dingtalk/config.yml
+    ports:
+      - "8060:8060"
+    entrypoint: /bin/prometheus-webhook-dingtalk   --config.file=/etc/prometheus-webhook-dingtalk/config.yml  --web.enable-ui

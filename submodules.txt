@@ -1,0 +1,34 @@
+
+/Users/masterliang/repo/martin-framework/ 
+/Users/masterliang/repo/martin-framework//martin-biz git@github.com:www-zerocode-net-cn/martin-biz.git
+/Users/masterliang/repo/martin-framework//martin-biz/martin-biz-auth git@github.com:www-zerocode-net-cn/martin-biz-auth.git
+/Users/masterliang/repo/martin-framework//martin-biz/martin-biz-resource git@github.com:www-zerocode-net-cn/martin-biz-resource.git
+/Users/masterliang/repo/martin-framework//martin-biz/martin-biz-sso git@github.com:www-zerocode-net-cn/martin-biz-sso.git
+/Users/masterliang/repo/martin-framework//martin-biz/martin-biz-swagger git@github.com:www-zerocode-net-cn/martin-biz-swagger.git
+/Users/masterliang/repo/martin-framework//martin-biz/martin-biz-system git@github.com:www-zerocode-net-cn/martin-biz-system.git
+/Users/masterliang/repo/martin-framework//martin-common git@github.com:www-zerocode-net-cn/martin-common.git
+/Users/masterliang/repo/martin-framework//martin-common/martin-common-api git@github.com:www-zerocode-net-cn/martin-common-api.git
+/Users/masterliang/repo/martin-framework//martin-common/martin-common-bean git@github.com:www-zerocode-net-cn/martin-common-bean.git
+/Users/masterliang/repo/martin-framework//martin-common/martin-common-bom git@github.com:www-zerocode-net-cn/martin-common-bom.git
+/Users/masterliang/repo/martin-framework//martin-common/martin-common-core git@github.com:www-zerocode-net-cn/martin-common-core.git
+/Users/masterliang/repo/martin-framework//martin-common/martin-common-data git@github.com:www-zerocode-net-cn/martin-common-data.git
+/Users/masterliang/repo/martin-framework//martin-common/martin-common-feign git@github.com:www-zerocode-net-cn/martin-common-feign.git
+/Users/masterliang/repo/martin-framework//martin-common/martin-common-log git@github.com:www-zerocode-net-cn/martin-common-log.git
+/Users/masterliang/repo/martin-framework//martin-common/martin-common-message git@github.com:www-zerocode-net-cn/martin-common-message.git
+/Users/masterliang/repo/martin-framework//martin-common/martin-common-oss git@github.com:www-zerocode-net-cn/martin-common-oss.git
+/Users/masterliang/repo/martin-framework//martin-common/martin-common-security git@github.com:www-zerocode-net-cn/martin-common-security.git
+/Users/masterliang/repo/martin-framework//martin-common/martin-common-sentinel git@github.com:www-zerocode-net-cn/martin-common-sentinel.git
+/Users/masterliang/repo/martin-framework//martin-common/martin-common-social git@github.com:www-zerocode-net-cn/martin-common-social.git
+/Users/masterliang/repo/martin-framework//martin-common/martin-common-swagger git@github.com:www-zerocode-net-cn/martin-common-swagger.git
+/Users/masterliang/repo/martin-framework//martin-common/martin-common-vip git@github.com:www-zerocode-net-cn/martin-common-vip.git
+/Users/masterliang/repo/martin-framework//martin-common/martin-common-websocket git@github.com:www-zerocode-net-cn/martin-common-websocket.git
+/Users/masterliang/repo/martin-framework//martin-extension git@github.com:www-zerocode-net-cn/martin-extension.git
+/Users/masterliang/repo/martin-framework//martin-extension/martin-extension-generator git@github.com:www-zerocode-net-cn/martin-extension-generator.git
+/Users/masterliang/repo/martin-framework//martin-extension/martin-extension-loco git@github.com:www-zerocode-net-cn/martin-extension-loco.git
+/Users/masterliang/repo/martin-framework//martin-extension/martin-extension-monitor git@github.com:www-zerocode-net-cn/martin-extension-monitor.git
+/Users/masterliang/repo/martin-framework//martin-extension/martin-extension-ncnb git@github.com:www-zerocode-net-cn/martin-extension-ncnb.git
+/Users/masterliang/repo/martin-framework//martin-extension/martin-extension-quartz git@github.com:www-zerocode-net-cn/martin-extension-quartz.git
+/Users/masterliang/repo/martin-framework//martin-extension/martin-extension-skywalking git@github.com:www-zerocode-net-cn/martin-extension-skywalking.git
+/Users/masterliang/repo/martin-framework//martin-cloud git@github.com:www-zerocode-net-cn/martin-cloud.git
+/Users/masterliang/repo/martin-framework//martin-cloud/martin-cloud-gateway git@github.com:www-zerocode-net-cn/martin-cloud-gateway.git
+/Users/masterliang/repo/martin-framework//martin-spring-boot-starter git@github.com:www-zerocode-net-cn/martin-spring-boot-starter.git

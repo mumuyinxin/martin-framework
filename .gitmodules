@@ -1,0 +1,15 @@
+[submodule "martin-biz"]
+	path = martin-biz
+	url = git@github.com:www-zerocode-net-cn/martin-biz.git
+[submodule "martin-common"]
+	path = martin-common
+	url = git@github.com:www-zerocode-net-cn/martin-common.git
+[submodule "martin-extension"]
+	path = martin-extension
+	url = git@github.com:www-zerocode-net-cn/martin-extension.git
+[submodule "martin-cloud"]
+	path = martin-cloud
+	url = git@github.com:www-zerocode-net-cn/martin-cloud.git
+[submodule "martin-spring-boot-starter"]
+	path = martin-spring-boot-starter
+	url = git@github.com:www-zerocode-net-cn/martin-spring-boot-starter.git

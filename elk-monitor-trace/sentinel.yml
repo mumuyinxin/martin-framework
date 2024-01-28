@@ -1,0 +1,22 @@
+version: '2.2'
+services:
+  martin-sentinel:
+    build:
+      context: ./
+      dockerfile: ./sentinel/Dockerfile
+    image: martin-sentinel:1.8.0
+    container_name: martin-sentinel
+    restart: always
+    environment:
+      JAVA_OPTS: "-Dserver.port=9604 -Xms256m -Xmx256m "
+    ports:
+      - "9604:9604"
+      - "8719:8719"
+    volumes:
+      - ./sentinel/logs:/root/logs
+    networks:
+      - martin
+
+networks:
+  martin:
+    external: true

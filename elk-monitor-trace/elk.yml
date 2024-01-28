@@ -1,0 +1,37 @@
+version: '2'
+services:
+  martin-elk-logstash:
+    image: logstash:7.6.2
+    container_name : martin-elk_logstash
+    hostname: martin-elk-logstash
+    stdin_open: true
+    tty: true
+    ports:
+      - "5000:5000/udp"
+      -  5001:5001
+    command: logstash --path.settings /etc/logstash -f /etc/logstash/conf.d/logstash.conf
+    networks:
+      - martin
+    volumes:
+      - ./elk/logstash/conf.d:/etc/logstash/conf.d
+      - ./elk/logstash/heapdump.hprof:/usr/share/logstash/heapdump.hprof -rw
+      - ./elk/logstash/gc.log:/usr/share/logstash/gc.log -rw
+
+  martin-elk-kibana:
+    image: kibana:7.6.2
+    container_name : martin-elk_kibana
+    hostname: martin-elk-kibana
+    stdin_open: true
+    tty: true
+    ports:
+      - 5601:5601
+    networks:
+      - martin
+    volumes:
+      - ./elk/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
+    environment:
+      - ELASTICSEARCH_URL=http://martin-elk-elasticsearch:9200
+
+networks:
+  martin:
+    external: true

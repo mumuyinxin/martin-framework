@@ -1,0 +1,122 @@
+version: "3"
+services:
+  martin-redis:
+    image: redis:4.0.10
+    restart: on-failure
+    container_name: martin-redis
+    ports:
+      - 6379:6379
+    networks:
+      - martin
+
+
+  martin-mysql:
+    container_name: martin-mysql
+    restart: always
+    image: mysql:8.0.28-oracle
+    user: mysql
+    env_file:
+      - ./martin-cloud/martin-cloud-nacos/env/mysql.env
+    volumes:
+      - ./martin-cloud/martin-cloud-nacos/docker/mysql8:/var/lib/mysql:rw
+    ports:
+      - "3306:3306"
+    networks:
+      - martin
+
+  martin-cloud-nacos:
+    build:
+      context: ./martin-cloud/martin-cloud-nacos
+      dockerfile: ./Dockerfile
+    container_name: martin-cloud-nacos
+    restart: always
+    env_file:
+      - ./martin-cloud/martin-cloud-nacos/env/nacos-standlone-mysql.env
+    volumes:
+      - ./martin-cloud/martin-cloud-nacos/docker/init.d/custom.properties:/home/nacos/init.d/custom.properties
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+      - "9849:9849"
+      - "9555:9555"
+    depends_on:
+      - martin-mysql
+    networks:
+      - martin
+
+  martin-extension-ncnb:
+    build:
+      context: ./martin-extension/martin-extension-ncnb
+      dockerfile: ./martin-extension/martin-extension-ncnb/Dockerfile
+    restart: on-failure
+    container_name: erd-zerocode
+    environment:
+      JAVA_OPTS: " -Xms512m -Xmx512m "
+    depends_on:
+      - martin-cloud-nacos
+    networks:
+      - martin
+
+  martin-cloud-gateway:
+    build:
+      context: ./martin-cloud/martin-cloud-gateway
+      dockerfile: ./martin-cloud/martin-cloud-gateway/Dockerfile
+    restart: on-failure
+    container_name: erd-gateway
+    environment:
+      JAVA_OPTS: " -Xms256m -Xmx256m "
+    ports:
+      - 9502:9502
+    depends_on:
+      - martin-cloud-nacos
+    networks:
+      - martin
+
+
+  martin-biz-auth:
+    build:
+      context: ./martin-biz/martin-biz-auth
+      dockerfile: ./martin-biz/martin-biz-auth/Dockerfile
+    restart: on-failure
+    container_name: erd-auth
+    environment:
+      JAVA_OPTS: " -Xms256m -Xmx256m "
+    depends_on:
+      - martin-cloud-nacos
+      - martin-redis
+    networks:
+      - martin
+
+
+  martin-biz-system:
+    build:
+      context: ./martin-biz/martin-biz-system
+      dockerfile: ./martin-biz/martin-biz-system/Dockerfile
+    restart: on-failure
+    container_name: erd-system
+    environment:
+      JAVA_OPTS: " -Xms256m -Xmx256m "
+    depends_on:
+      - martin-cloud-nacos
+      - martin-redis
+    networks:
+      - martin
+
+
+  erd-ui:
+    image: erdonline/erd-ui:latest
+    container_name: erd-ui
+    restart: on-failure
+    env_file:
+      - ./ui/.env
+    ports:
+      - "9669:9669"
+    networks:
+      - martin
+
+
+
+
+networks:
+  martin:
+    external: true

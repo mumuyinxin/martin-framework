@@ -1,0 +1,6 @@
+mysql -uroot -p$MYSQL_ROOT_PASSWORD << EOF
+source $WORK_PATH/$SCHEMA;
+source $WORK_PATH/$ERD;
+source $WORK_PATH/$MARTIN;
+source $WORK_PATH/$NACOS;
+source $WORK_PATH/$PRIVILEGES;
